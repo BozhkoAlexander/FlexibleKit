@@ -19,7 +19,7 @@ open class FlexibleLayout<ItemIdentifierType>: NSObject where ItemIdentifierType
         if #available(iOS 13.0, *) {
             layout = modern(items)
         } else {
-            layout = classic()
+            layout = classic(items)
         }
         
         view.setCollectionViewLayout(layout, animated: animated)
@@ -36,8 +36,14 @@ open class FlexibleLayout<ItemIdentifierType>: NSObject where ItemIdentifierType
         return UICollectionViewCompositionalLayout(section: section)
     }
     
-    private func classic() -> ClassicLayout {
-        return ClassicLayout()
+    private func classic(_ providers: Array<ItemIdentifierType>) -> ClassicLayout {
+        let items = providers.map({ $0.classicItem })
+        
+        let groupSize = ClassicLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))
+        let group = ClassicLayoutGroup.vertical(layoutSize: groupSize, subitems: items)
+        
+        let section = ClassicLayoutSection(group: group)
+        return ClassicLayout(section: section)
     }
 
 }

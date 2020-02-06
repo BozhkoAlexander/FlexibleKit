@@ -98,7 +98,11 @@ open class FlexibleDataSource<ItemIdentifierType>: NSObject where ItemIdentifier
     }
     
     private func classicUpdate(_ items: Array<ItemIdentifierType>) {
-        // TODO: - classic update
+        var snapshot = ClassicDiffableSnapshot<Section, ItemIdentifierType>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(items)
+        
+        classic.apply(snapshot)
     }
 
 }

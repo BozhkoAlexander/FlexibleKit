@@ -12,6 +12,6 @@ public protocol FlexibleProvider: Hashable {
     @available(iOS 13.0, *)
     var modernItem: NSCollectionLayoutItem { get }
     
-    var classicItem: Any { get }
+    var classicItem: ClassicLayoutItem { get }
     
 }

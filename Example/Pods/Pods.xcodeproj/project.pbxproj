@@ -21,6 +21,11 @@
 		FA9014CA23EC3B31006DF7EA /* FlexibleLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014C923EC3B31006DF7EA /* FlexibleLayout.swift */; };
 		FA9014CC23EC3BB0006DF7EA /* ClassicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014CB23EC3BB0006DF7EA /* ClassicLayout.swift */; };
 		FA9014D023EC4F34006DF7EA /* FlexibleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014CF23EC4F34006DF7EA /* FlexibleProvider.swift */; };
+		FA9014D423EC5EA5006DF7EA /* ClassicDiffableSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014D323EC5EA5006DF7EA /* ClassicDiffableSnapshot.swift */; };
+		FA9014D623EC65B4006DF7EA /* ClassicLayoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014D523EC65B4006DF7EA /* ClassicLayoutItem.swift */; };
+		FA9014D823EC69EB006DF7EA /* ClassicLayoutSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014D723EC69EB006DF7EA /* ClassicLayoutSection.swift */; };
+		FA9014DA23EC6A1C006DF7EA /* ClassicLayoutGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014D923EC6A1C006DF7EA /* ClassicLayoutGroup.swift */; };
+		FA9014DC23EC6BFE006DF7EA /* ClassicLayoutSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014DB23EC6BFE006DF7EA /* ClassicLayoutSize.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +82,11 @@
 		FA9014C923EC3B31006DF7EA /* FlexibleLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlexibleLayout.swift; path = FlexibleKit/Classes/FlexibleLayout.swift; sourceTree = "<group>"; };
 		FA9014CB23EC3BB0006DF7EA /* ClassicLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassicLayout.swift; path = FlexibleKit/Classes/ClassicLayout.swift; sourceTree = "<group>"; };
 		FA9014CF23EC4F34006DF7EA /* FlexibleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlexibleProvider.swift; path = FlexibleKit/Classes/FlexibleProvider.swift; sourceTree = "<group>"; };
+		FA9014D323EC5EA5006DF7EA /* ClassicDiffableSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassicDiffableSnapshot.swift; path = FlexibleKit/Classes/ClassicDiffableSnapshot.swift; sourceTree = "<group>"; };
+		FA9014D523EC65B4006DF7EA /* ClassicLayoutItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassicLayoutItem.swift; path = FlexibleKit/Classes/ClassicLayoutItem.swift; sourceTree = "<group>"; };
+		FA9014D723EC69EB006DF7EA /* ClassicLayoutSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassicLayoutSection.swift; path = FlexibleKit/Classes/ClassicLayoutSection.swift; sourceTree = "<group>"; };
+		FA9014D923EC6A1C006DF7EA /* ClassicLayoutGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassicLayoutGroup.swift; path = FlexibleKit/Classes/ClassicLayoutGroup.swift; sourceTree = "<group>"; };
+		FA9014DB23EC6BFE006DF7EA /* ClassicLayoutSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassicLayoutSize.swift; path = FlexibleKit/Classes/ClassicLayoutSize.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,9 +208,14 @@
 				103E3C6B939D02B789559E11F9CBD64D /* Support Files */,
 				FA9014B623EC160B006DF7EA /* FlexibleDataSource.swift */,
 				FA9014B823EC183F006DF7EA /* ClassicDataSource.swift */,
+				FA9014D323EC5EA5006DF7EA /* ClassicDiffableSnapshot.swift */,
 				FA9014CF23EC4F34006DF7EA /* FlexibleProvider.swift */,
 				FA9014C923EC3B31006DF7EA /* FlexibleLayout.swift */,
 				FA9014CB23EC3BB0006DF7EA /* ClassicLayout.swift */,
+				FA9014DB23EC6BFE006DF7EA /* ClassicLayoutSize.swift */,
+				FA9014D523EC65B4006DF7EA /* ClassicLayoutItem.swift */,
+				FA9014D923EC6A1C006DF7EA /* ClassicLayoutGroup.swift */,
+				FA9014D723EC69EB006DF7EA /* ClassicLayoutSection.swift */,
 			);
 			name = FlexibleKit;
 			path = ../..;
@@ -383,6 +398,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA9014CA23EC3B31006DF7EA /* FlexibleLayout.swift in Sources */,
+				FA9014D823EC69EB006DF7EA /* ClassicLayoutSection.swift in Sources */,
+				FA9014DA23EC6A1C006DF7EA /* ClassicLayoutGroup.swift in Sources */,
+				FA9014D623EC65B4006DF7EA /* ClassicLayoutItem.swift in Sources */,
+				FA9014D423EC5EA5006DF7EA /* ClassicDiffableSnapshot.swift in Sources */,
+				FA9014DC23EC6BFE006DF7EA /* ClassicLayoutSize.swift in Sources */,
 				FA9014D023EC4F34006DF7EA /* FlexibleProvider.swift in Sources */,
 				FA9014B923EC183F006DF7EA /* ClassicDataSource.swift in Sources */,
 				3F5E00C5C08EB04672EB250F5120CD21 /* FlexibleKit-dummy.m in Sources */,
@@ -484,7 +504,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -550,7 +570,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
