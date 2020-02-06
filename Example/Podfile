@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'FlexibleKit_Example' do
+  pod 'FlexibleKit', :path => '../'
+
+  target 'FlexibleKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
