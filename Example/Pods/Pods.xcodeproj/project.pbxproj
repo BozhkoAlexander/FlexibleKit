@@ -18,6 +18,9 @@
 		C6A0C4D8729769F477D4A2EE98314E89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		FA9014B723EC160B006DF7EA /* FlexibleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014B623EC160B006DF7EA /* FlexibleDataSource.swift */; };
 		FA9014B923EC183F006DF7EA /* ClassicDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014B823EC183F006DF7EA /* ClassicDataSource.swift */; };
+		FA9014CA23EC3B31006DF7EA /* FlexibleLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014C923EC3B31006DF7EA /* FlexibleLayout.swift */; };
+		FA9014CC23EC3BB0006DF7EA /* ClassicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014CB23EC3BB0006DF7EA /* ClassicLayout.swift */; };
+		FA9014D023EC4F34006DF7EA /* FlexibleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014CF23EC4F34006DF7EA /* FlexibleProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,9 @@
 		FA2F5C8F97F39A56D02FC42B79E2DE7B /* Pods-FlexibleKit_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-FlexibleKit_Example-frameworks.sh"; sourceTree = "<group>"; };
 		FA9014B623EC160B006DF7EA /* FlexibleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlexibleDataSource.swift; path = FlexibleKit/Classes/FlexibleDataSource.swift; sourceTree = "<group>"; };
 		FA9014B823EC183F006DF7EA /* ClassicDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassicDataSource.swift; path = FlexibleKit/Classes/ClassicDataSource.swift; sourceTree = "<group>"; };
+		FA9014C923EC3B31006DF7EA /* FlexibleLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlexibleLayout.swift; path = FlexibleKit/Classes/FlexibleLayout.swift; sourceTree = "<group>"; };
+		FA9014CB23EC3BB0006DF7EA /* ClassicLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassicLayout.swift; path = FlexibleKit/Classes/ClassicLayout.swift; sourceTree = "<group>"; };
+		FA9014CF23EC4F34006DF7EA /* FlexibleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlexibleProvider.swift; path = FlexibleKit/Classes/FlexibleProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +198,9 @@
 				103E3C6B939D02B789559E11F9CBD64D /* Support Files */,
 				FA9014B623EC160B006DF7EA /* FlexibleDataSource.swift */,
 				FA9014B823EC183F006DF7EA /* ClassicDataSource.swift */,
+				FA9014CF23EC4F34006DF7EA /* FlexibleProvider.swift */,
+				FA9014C923EC3B31006DF7EA /* FlexibleLayout.swift */,
+				FA9014CB23EC3BB0006DF7EA /* ClassicLayout.swift */,
 			);
 			name = FlexibleKit;
 			path = ../..;
@@ -373,8 +382,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA9014CA23EC3B31006DF7EA /* FlexibleLayout.swift in Sources */,
+				FA9014D023EC4F34006DF7EA /* FlexibleProvider.swift in Sources */,
 				FA9014B923EC183F006DF7EA /* ClassicDataSource.swift in Sources */,
 				3F5E00C5C08EB04672EB250F5120CD21 /* FlexibleKit-dummy.m in Sources */,
+				FA9014CC23EC3BB0006DF7EA /* ClassicLayout.swift in Sources */,
 				FA9014B723EC160B006DF7EA /* FlexibleDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

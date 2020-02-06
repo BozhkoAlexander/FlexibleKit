@@ -13,7 +13,11 @@ class FlexibleViewController: UIViewController, UICollectionViewDelegate {
     
     // MARK: - Properties
     
-    var dataSource: FlexibleDataSource<FlexibleItem>!
+    var dataSource: FlexibleDataSource<Item>!
+    
+    var model = FlexibleModel()
+    
+    private var flexibleView: FlexibleView! { return view as? FlexibleView }
     
     // MARK: - Life cycle
     
@@ -24,7 +28,22 @@ class FlexibleViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataSource = FlexibleDataSource<FlexibleItem>()
+        title = "Flexible page"
+        
+        dataSource = FlexibleDataSource<Item>()
+        dataSource.start(with: flexibleView.collectionView) { (collectionView, indexPath, item) -> UICollectionViewCell? in
+            return collectionView.dequeueReusableCell(withReuseIdentifier: item.type.cellId, for: indexPath)
+        }
+        dataSource.register(cells: ItemType.cellsInfo)
+        model.load()
+        dataSource.update(model.items, animated: false)
+    }
+    
+    // MARK: - Collection view delegate
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let cell = cell as? FlexibleCell else { return }
+        cell.willDisplay(model.items[indexPath.item])
     }
 
 }

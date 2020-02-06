@@ -7,8 +7,16 @@
 
 import UIKit
 
-internal class ClassicDataSource<SectionIdentifierType, ElementIdentifierType>: NSObject where SectionIdentifierType: Hashable, ElementIdentifierType: Hashable {
+internal class ClassicDataSource<SectionIdentifierType, ItemIdentifierType>: NSObject where SectionIdentifierType: Hashable, ItemIdentifierType: FlexibleProvider {
+    
+    // MARK: - Helpers
     
     
+    
+    // MARK: - Life cycle
+    
+    init(collectionView: UICollectionView, cellProvider: FlexibleDataSource<ItemIdentifierType>.FlexibleCellProvider?) {
+        super.init()
+    }
 
 }
