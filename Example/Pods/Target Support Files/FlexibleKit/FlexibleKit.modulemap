@@ -1,0 +1,6 @@
+framework module FlexibleKit {
+  umbrella header "FlexibleKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

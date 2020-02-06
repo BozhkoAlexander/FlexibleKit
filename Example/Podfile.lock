@@ -1,0 +1,16 @@
+PODS:
+  - FlexibleKit (0.1.0)
+
+DEPENDENCIES:
+  - FlexibleKit (from `../`)
+
+EXTERNAL SOURCES:
+  FlexibleKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FlexibleKit: ceeb897389795581b4e42fb3171955717e8060b5
+
+PODFILE CHECKSUM: 025ec6f47aa290b2811d365241bd2deaa37cd74d
+
+COCOAPODS: 1.8.3
