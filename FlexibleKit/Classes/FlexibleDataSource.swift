@@ -13,14 +13,14 @@ public enum Section: Hashable {
     
 }
 
-open class FlexibleDataSource<SectionIdentifierType, ElementIdentifierType>: NSObject where SectionIdentifierType: Hashable, ElementIdentifierType: Hashable {
+open class FlexibleDataSource<ElementIdentifierType>: NSObject where ElementIdentifierType: Hashable {
     
     // MARK: - Helpers
     
     @available(iOS 13.0, *)
-    internal typealias Modern = UICollectionViewDiffableDataSource<SectionIdentifierType, ElementIdentifierType>
+    internal typealias Modern = UICollectionViewDiffableDataSource<Section, ElementIdentifierType>
     
-    internal typealias Classic = ClassicDataSource<SectionIdentifierType, ElementIdentifierType>
+    internal typealias Classic = ClassicDataSource<Section, ElementIdentifierType>
     
     // MARK: - Properties
     

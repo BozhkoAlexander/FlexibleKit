@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import FlexibleKit
 
 class FlexibleViewController: UIViewController, UICollectionViewDelegate {
+    
+    // MARK: - Properties
+    
+    var dataSource: FlexibleDataSource<FlexibleItem>!
     
     // MARK: - Life cycle
     
@@ -19,6 +24,7 @@ class FlexibleViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        dataSource = FlexibleDataSource<FlexibleItem>()
     }
 
 }
