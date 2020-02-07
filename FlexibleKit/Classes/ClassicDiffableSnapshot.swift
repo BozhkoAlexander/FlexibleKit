@@ -26,6 +26,7 @@ public struct ClassicDiffableSnapshot<SectionIdentifierType, ItemIdentifierType>
     public mutating func appendItems(_ newValue: [ItemIdentifierType]) {
         guard var section = image.first else { return }
         section.items.append(contentsOf: newValue)
+        image[0] = section
     }
     
     // MARK: - Data source

@@ -7,6 +7,8 @@
 
 import UIKit
 
+typealias LayoutResult = (frame: CGRect, attrs: [UICollectionViewLayoutAttributes])
+
 class ClassicLayout: UICollectionViewLayout {
     
     // MARK: - Properties
@@ -54,15 +56,16 @@ class ClassicLayout: UICollectionViewLayout {
     
     override func prepare() {
         super.prepare()
-        guard
-            let view = collectionView,
-            let dataSource = view.dataSource
-        else { return }
-        let numberOfItems = dataSource.collectionView(view, numberOfItemsInSection: 0)
-        layoutMap = (0..<numberOfItems).map({
-            let indexPath = IndexPath(item: $0, section: 0)
-            return insertItemAttributes(at: indexPath)
-        })
+//        guard
+//            let view = collectionView,
+//            let dataSource = view.dataSource
+//        else { return }
+//        let numberOfItems = dataSource.collectionView(view, numberOfItemsInSection: 0)
+//        layoutMap = (0..<numberOfItems).map({
+//            let indexPath = IndexPath(item: $0, section: 0)
+//            return insertItemAttributes(at: indexPath)
+//        })
+        createLayoutMap()
     }
     
     // MARK: - Private methods
@@ -86,6 +89,22 @@ class ClassicLayout: UICollectionViewLayout {
         currentContentSize.height = attrs.frame.maxY
         
         return attrs
+    }
+    
+    private func createLayoutMap() {
+        guard let view = collectionView else { return }
+        var availableFrame = view.bounds
+        if #available(iOS 11.0, *) {
+            availableFrame = availableFrame.inset(by: view.safeAreaInsets)
+        } else {
+            availableFrame.size.height -= availableFrame.origin.y
+            availableFrame.origin.y = 0
+        }
+        availableFrame = availableFrame.inset(by: view.contentInset)
+        
+        caret = availableFrame.origin
+        layoutMap = section.map(for: availableFrame, caret: &caret, index: 0)
+        currentContentSize = CGSize(width: caret.x, height: caret.y)
     }
 
 }

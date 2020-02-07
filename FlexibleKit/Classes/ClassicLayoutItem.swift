@@ -9,10 +9,34 @@ import UIKit
 
 open class ClassicLayoutItem: NSObject {
     
+    // MARK: - Properties
+    
+    open var layoutSize: ClassicLayoutSize
+    
+    open var contentInsets: UIEdgeInsets = .zero
+    
     // MARK: - Life cycle
     
-    public init(layoutSize: ClassicLayoutSize, supplementaryItems: [Any]) { // TODO
+    public init(layoutSize: ClassicLayoutSize, supplementaryItems: [Any] = []) { // TODO
+        self.layoutSize = layoutSize
         super.init()
+    }
+    
+    func map(for bounds: CGRect, caret: inout CGPoint, indexPath: IndexPath) -> [UICollectionViewLayoutAttributes] {
+        // lFrame is layout frame
+        let lSyze = CGSize(
+            width: layoutSize.widthDimension.value(for: bounds.size),
+            height: layoutSize.heightDimension.value(for: bounds.size))
+        let lFrame = CGRect(origin: caret, size: lSyze)
+        // aFrame is attributes frame (real collection view cell's frame)
+        let aFrame = lFrame.inset(by: contentInsets)
+        // move caret
+        caret.x = lFrame.maxX
+        caret.y = lFrame.maxY
+        
+        let attrs = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+        attrs.frame = aFrame
+        return [attrs]
     }
 
 }

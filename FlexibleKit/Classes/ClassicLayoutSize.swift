@@ -38,17 +38,28 @@ open class ClassicLayoutDimension: NSObject {
     
     // MARK: - Life cycle
     
-    internal override init() {
+    internal init(_ dimension: CGFloat) {
+        self.dimension = dimension
         super.init()
+    }
+    
+    func value(for availableSize: CGSize) -> CGFloat {
+        if isAbsolute {
+            return dimension
+        } else if isFractionalWidth {
+            return round(dimension * availableSize.width)
+        } else if isFractionalHeight {
+            return round(dimension * availableSize.height)
+        }
+        return dimension
     }
     
     // MARK: - Methods
     
     // dimension is computed as a fraction of the width of the containing group
     open class func fractionalWidth(_ fractionalWidth: CGFloat) -> ClassicLayoutDimension {
-        let d = ClassicLayoutDimension()
+        let d = ClassicLayoutDimension(fractionalWidth)
         d.isFractionalWidth = true
-        d.dimension = fractionalWidth
         
         return d
     }
@@ -56,9 +67,8 @@ open class ClassicLayoutDimension: NSObject {
     
     // dimension is computed as a fraction of the height of the containing group
     open class func fractionalHeight(_ fractionalHeight: CGFloat) -> ClassicLayoutDimension {
-        let d = ClassicLayoutDimension()
+        let d = ClassicLayoutDimension(fractionalHeight)
         d.isFractionalHeight = true
-        d.dimension = fractionalHeight
         
         return d
     }
@@ -66,9 +76,8 @@ open class ClassicLayoutDimension: NSObject {
     
     // dimension with an absolute point value
     open class func absolute(_ absoluteDimension: CGFloat) -> ClassicLayoutDimension {
-        let d = ClassicLayoutDimension()
+        let d = ClassicLayoutDimension(absoluteDimension)
         d.isAbsolute = true
-        d.dimension = absoluteDimension
         
         return d
     }
@@ -76,9 +85,8 @@ open class ClassicLayoutDimension: NSObject {
     
     // dimension is estimated with a point value. Actual size will be determined when the content is rendered.
     open class func estimated(_ estimatedDimension: CGFloat) -> ClassicLayoutDimension {
-        let d = ClassicLayoutDimension()
+        let d = ClassicLayoutDimension(estimatedDimension)
         d.isEstimated = true
-        d.dimension = estimatedDimension
         
         return d
     }

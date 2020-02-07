@@ -13,6 +13,32 @@ open class ClassicLayoutGroup: ClassicLayoutItem {
     
     open var subitems: [ClassicLayoutItem] = []
     
+    // MARK: - Life cycle
+    
+    override func map(for bounds: CGRect, caret: inout CGPoint, indexPath: IndexPath) -> [UICollectionViewLayoutAttributes] {
+        let size = CGSize(
+            width: layoutSize.widthDimension.value(for: bounds.size),
+            height: layoutSize.heightDimension.value(for: bounds.size))
+        caret.x += contentInsets.left
+        caret.y += contentInsets.top
+        let frame = CGRect(origin: caret, size: size)
+        
+        var layoutMap = [UICollectionViewLayoutAttributes]()
+        subitems.enumerated().forEach({ index, item in
+            caret.x = frame.origin.x
+
+            let path = IndexPath(item: indexPath.item + index, section: indexPath.section)
+            let attrs = item.map(for: frame, caret: &caret, indexPath: path)
+            
+            layoutMap.append(contentsOf: attrs)
+        })
+        
+        caret.x += contentInsets.right
+        caret.y += contentInsets.bottom
+        
+        return layoutMap
+    }
+    
     // MARK: - Methods
     
     // Specifies a group that will repeat items until available vertical space is exhausted.

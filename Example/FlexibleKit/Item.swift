@@ -40,8 +40,12 @@ class Item: NSObject, FlexibleProvider {
         return item
     }
     
-    var classicItem: Any {
-        return NSObject()
+    var classicItem: ClassicLayoutItem {
+        let height = 60 + style.margin.top + style.margin.bottom
+        let size = ClassicLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(height))
+        let item = ClassicLayoutItem(layoutSize: size)
+        item.contentInsets = style.margin
+        return item
     }
 
 }
