@@ -14,6 +14,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		8B5EF9E7C6D30E2836F1330C /* Pods_FlexibleKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B707480FD1EE78EC4017B2 /* Pods_FlexibleKit_Example.framework */; };
 		AFA264C3BBE9E14CA96AF3A1 /* Pods_FlexibleKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811D100A1846955CCBF58843 /* Pods_FlexibleKit_Tests.framework */; };
+		FA585F8E23ED9EC900C203E9 /* release.sh in Resources */ = {isa = PBXBuildFile; fileRef = FA585F8D23ED9EC900C203E9 /* release.sh */; };
 		FA9014B523EC149E006DF7EA /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014B423EC149E006DF7EA /* FlexibleView.swift */; };
 		FA9014BB23EC1B94006DF7EA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014BA23EC1B94006DF7EA /* Item.swift */; };
 		FA9014BF23EC1F73006DF7EA /* FlexibleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014BE23EC1F73006DF7EA /* FlexibleModel.swift */; };
@@ -52,9 +53,9 @@
 		B62B7E5DEE5C8DB70E996516 /* Pods-FlexibleKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlexibleKit_Example.release.xcconfig"; path = "Target Support Files/Pods-FlexibleKit_Example/Pods-FlexibleKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		EB1837473FCABCD3733F2109 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		ED740D1105E5D52A03C6297A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		FA585F8D23ED9EC900C203E9 /* release.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = release.sh; path = ../release.sh; sourceTree = "<group>"; };
 		FA9014B423EC149E006DF7EA /* FlexibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleView.swift; sourceTree = "<group>"; };
 		FA9014BA23EC1B94006DF7EA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		FA9014BD23EC1EC8006DF7EA /* release.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = release.sh; sourceTree = "<group>"; };
 		FA9014BE23EC1F73006DF7EA /* FlexibleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleModel.swift; sourceTree = "<group>"; };
 		FA9014C123EC1FD5006DF7EA /* data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		FA9014C323EC3756006DF7EA /* FlexibleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleCell.swift; sourceTree = "<group>"; };
@@ -91,7 +92,7 @@
 				607FACD11AFB9204008FA782 /* Products */,
 				6AC67DAD06B10295BE0CF751 /* Pods */,
 				E7ED42C1B46CF135248D4C71 /* Frameworks */,
-				FA9014BD23EC1EC8006DF7EA /* release.sh */,
+				FA585F8D23ED9EC900C203E9 /* release.sh */,
 			);
 			sourceTree = "<group>";
 		};
@@ -275,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA585F8E23ED9EC900C203E9 /* release.sh in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				FA9014C223EC1FD5006DF7EA /* data.json in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
