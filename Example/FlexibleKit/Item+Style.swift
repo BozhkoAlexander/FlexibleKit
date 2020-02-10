@@ -14,6 +14,8 @@ extension Item {
         
         var margin: UIEdgeInsets = .zero
         
+        var width: CGFloat = 1
+        
         @available(iOS 13.0, *)
         var directionalMargin: NSDirectionalEdgeInsets {
             return NSDirectionalEdgeInsets(top: margin.top, leading: margin.left, bottom: margin.bottom, trailing: margin.right)
@@ -23,6 +25,7 @@ extension Item {
             let json = value as? Dictionary<String, Any>
             super.init()
             
+            updateWidth(json?["Width"])
             updateMargin(json?["Margin"])
         }
         
@@ -32,6 +35,11 @@ extension Item {
             margin.right = json?["Right"] as? CGFloat ?? 0
             margin.top = json?["Top"] as? CGFloat ?? 0
             margin.bottom = json?["Bottom"] as? CGFloat ?? 0
+        }
+        
+        private func updateWidth(_ value: Any?) {
+            let floatValue = value as? CGFloat ?? 12
+            width = floatValue / 12
         }
         
     }

@@ -11,6 +11,14 @@ import UIKit
 class FlexibleModel: NSObject {
     
     var items: [Item] = []
+    
+    public var flatItems: [Item] {
+        var result = [Item]()
+        items.forEach({
+            result.append(contentsOf: $0.flatItems)
+        })
+        return result
+    }
         
     public func load() {
         guard let path = Bundle.main.path(forResource: "data", ofType: "json") else { return }
@@ -29,7 +37,7 @@ class FlexibleModel: NSObject {
             items = []
             return
         }
-        items = json.map({ Item($0) })
+        items = json.map({ Item.insert($0) })
     }
 
 }

@@ -12,6 +12,8 @@ enum ItemType: Int, CaseIterable {
     
     case flexible = 140
     
+    case container = 141
+    
     init(_ value: Any?) {
         if let raw = value as? Int, let type = ItemType(rawValue: raw) {
             self = type
@@ -23,12 +25,21 @@ enum ItemType: Int, CaseIterable {
     var cellId: String {
         switch self {
         case .flexible: return "flexible"
+        case .container: return "container"
+        }
+    }
+    
+    var dataClass: Item.Type {
+        switch self {
+        case .flexible: return Item.self
+        case .container: return Container.self
         }
     }
     
     var cellClass: UICollectionViewCell.Type {
         switch self {
         case .flexible: return FlexibleCell.self
+        case .container: return FlexibleContainerCell.self
         }
     }
     

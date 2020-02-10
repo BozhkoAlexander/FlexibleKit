@@ -36,14 +36,14 @@ class FlexibleViewController: UIViewController, UICollectionViewDelegate {
         }
         dataSource.register(cells: ItemType.cellsInfo)
         model.load()
-        dataSource.update(model.items, animated: false)
+        dataSource.update(model.items, flat: model.flatItems, animated: false)
     }
     
     // MARK: - Collection view delegate
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let cell = cell as? FlexibleCell else { return }
-        cell.willDisplay(model.items[indexPath.item])
+        cell.willDisplay(model.flatItems[indexPath.item])
     }
 
 }

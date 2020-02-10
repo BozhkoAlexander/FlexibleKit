@@ -71,11 +71,11 @@ open class FlexibleDataSource<ItemIdentifierType>: NSObject where ItemIdentifier
     }
     
     /// Call this method whenever the data model is changed.
-    open func update(_ items: Array<ItemIdentifierType>, animated: Bool) {
+    open func update(_ items: Array<ItemIdentifierType>, flat flatIems: Array<ItemIdentifierType>, animated: Bool) {
         if #available(iOS 13.0, *) {
-            modernUpdate(items)
+            modernUpdate(flatIems)
         } else {
-            classicUpdate(items)
+            classicUpdate(flatIems)
         }
         
         layout.update(collectionView, animated: animated, items: items)
