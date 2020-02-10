@@ -104,10 +104,21 @@ class Container: Item {
     }
     
     override var classicItem: ClassicLayoutItem {
-        let size = ClassicLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        let item = ClassicLayoutItem(layoutSize: size)
-        item.contentInsets = style.margin
-        return item
+        let items = subitems.map({ $0.classicItem })
+        let height = 60 + style.margin.top + style.margin.bottom
+        let groupSize = ClassicLayoutSize(widthDimension: .fractionalWidth(style.width), heightDimension: .absolute(height))
+        let group: ClassicLayoutGroup
+        switch direction {
+        case .vertical:
+            group = ClassicLayoutGroup.vertical(layoutSize: groupSize, subitems: items)
+        case .horizontal:
+            group = ClassicLayoutGroup.horizontal(layoutSize: groupSize, subitems: items)
+        }
+        let decorationSize = ClassicLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(60))
+        group.decorationItem = ClassicLayoutItem(layoutSize: decorationSize)
+        group.contentInsets = style.margin
+        
+        return group
     }
 
 }

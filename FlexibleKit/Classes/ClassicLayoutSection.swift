@@ -19,8 +19,8 @@ open class ClassicLayoutSection: NSObject {
     }
     
     func map(for bounds: CGRect, caret: inout CGPoint, index: Int) -> [UICollectionViewLayoutAttributes] {
-        let indexPath = IndexPath(item: 0, section: index)
-        return group.map(for: bounds, caret: &caret, indexPath: indexPath)
+        var indexPath = IndexPath(item: 0, section: index)
+        return group.map(for: bounds, caret: &caret, indexPath: &indexPath)
     }
 
 }

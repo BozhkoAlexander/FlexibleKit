@@ -22,7 +22,7 @@ open class ClassicLayoutItem: NSObject {
         super.init()
     }
     
-    func map(for bounds: CGRect, caret: inout CGPoint, indexPath: IndexPath) -> [UICollectionViewLayoutAttributes] {
+    func map(for bounds: CGRect, caret: inout CGPoint, indexPath: inout IndexPath) -> [UICollectionViewLayoutAttributes] {
         // lFrame is layout frame
         let lSyze = CGSize(
             width: layoutSize.widthDimension.value(for: bounds.size),
@@ -36,6 +36,9 @@ open class ClassicLayoutItem: NSObject {
         
         let attrs = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         attrs.frame = aFrame
+        
+        indexPath.item += 1
+        
         return [attrs]
     }
 
