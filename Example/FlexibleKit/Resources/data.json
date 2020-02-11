@@ -131,5 +131,138 @@
             "Margin": { "Left": 20, "Right": 20 }
         },
         "Title": "Item 13"
+    },
+    {
+        "Type": 141,
+        "Style": {
+            "Margin": { "Left": 20, "Right": 20, "Top": 20, "Bottom": 20 }
+        },
+        "Direction": "horizontal",
+        "Items": [
+            {
+                "Type": 140,
+                "Style": { "Width": 4 },
+                "Title": "Item 0"
+            },
+            {
+                "Type": 140,
+                "Style": {
+                    "Width": 4,
+                    "Margin": { "Left": 20, "Right": 20 }
+                },
+                "Title": "Item 1"
+            },
+            {
+                "Type": 140,
+                "Style": { "Width": 4 },
+                "Title": "Item 2"
+            }
+        ]
+        
+    },
+    {
+        "Type": 141,
+        "Style": {
+            "Margin": { "Left": 20, "Right": 20, "Bottom": 20 }
+        },
+        "Direction": "horizontal",
+        "Items": [
+            {
+                "Type": 140,
+                "Style": {
+                    "Width": 4,
+                    "Margin": { "Right": 10 }
+                },
+                "Title": "Item 3"
+            },
+            {
+                "Type": 140,
+                "Style": {
+                    "Width": 8,
+                    "Margin": { "Left": 10 }
+                },
+                "Title": "Item 4"
+            }
+        ]
+        
+    },
+    {
+        "Type": 141,
+        "Style": {
+            "Margin": { "Left": 20, "Right": 20, "Bottom": 20 }
+        },
+        "Direction": "horizontal",
+        "Items": [
+            {
+                "Type": 140,
+                "Style": {
+                    "Width": 2,
+                    "Margin": { "Right": 10 }
+                },
+                "Title": "Item 5"
+            },
+            {
+                "Type": 140,
+                "Style": {
+                    "Width": 2,
+                    "Margin": { "Left": 10, "Right": 10 }
+                },
+                "Title": "Item 6"
+            },
+            {
+                "Type": 140,
+                "Style": {
+                    "Width": 2,
+                    "Margin": { "Left": 10, "Right": 10 }
+                },
+                "Title": "Item 7"
+            },
+            {
+                "Type": 140,
+                "Style": {
+                    "Width": 2,
+                    "Margin": { "Left": 10, "Right": 10 }
+                },
+                "Title": "Item 8"
+            },
+            {
+                "Type": 140,
+                "Style": {
+                    "Width": 2,
+                    "Margin": { "Left": 10, "Right": 10 }
+                },
+                "Title": "Item 9"
+            },
+            {
+                "Type": 140,
+                "Style": {
+                    "Width": 2,
+                    "Margin": { "Left": 10 }
+                },
+                "Title": "Item 10"
+            }
+        ]
+        
+    },
+    {
+        "Type": 140,
+        "Style": {
+            "Margin": { "Left": 20, "Right": 20, "Bottom": 20 }
+        },
+        "Title": "Item 11"
+    },
+    {
+        "Type": 140,
+        "Style": {
+            "Margin": { "Left": 20, "Right": 20, "Bottom": 20 }
+        },
+        "Title": "Item 12"
+    },
+    {
+        "Type": 140,
+        "Style": {
+            "Margin": { "Left": 20, "Right": 20 }
+        },
+        "Title": "Item 13"
     }
 ]

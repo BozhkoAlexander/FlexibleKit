@@ -36,6 +36,7 @@ open class ClassicLayoutItem: NSObject {
         
         let attrs = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         attrs.frame = aFrame
+        attrs.zIndex = indexPath.item
         
         indexPath.item += 1
         
