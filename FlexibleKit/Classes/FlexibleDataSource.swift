@@ -54,11 +54,12 @@ open class FlexibleDataSource<ItemIdentifierType>: NSObject where ItemIdentifier
     
     /// Call this when the collection view is initialized.
     open func start(with collectionView: UICollectionView, cellProvider: @escaping FlexibleCellProvider) {
-        if #available(iOS 13.0, *) {
-            modern = Modern(collectionView: collectionView, cellProvider: cellProvider)
-        } else {
-            classic = Classic(collectionView: collectionView, cellProvider: cellProvider)
-        }
+//        if #available(iOS 13.0, *) {
+//            modern = Modern(collectionView: collectionView, cellProvider: cellProvider)
+//        } else {
+//            classic = Classic(collectionView: collectionView, cellProvider: cellProvider)
+//        }
+        classic = Classic(collectionView: collectionView, cellProvider: cellProvider)
         
         self.collectionView = collectionView
     }
@@ -72,11 +73,12 @@ open class FlexibleDataSource<ItemIdentifierType>: NSObject where ItemIdentifier
     
     /// Call this method whenever the data model is changed.
     open func update(_ items: Array<ItemIdentifierType>, flat flatIems: Array<ItemIdentifierType>, animated: Bool) {
-        if #available(iOS 13.0, *) {
-            modernUpdate(flatIems)
-        } else {
-            classicUpdate(flatIems)
-        }
+//        if #available(iOS 13.0, *) {
+//            modernUpdate(flatIems)
+//        } else {
+//            classicUpdate(flatIems)
+//        }
+        classicUpdate(flatIems)
         
         layout.update(collectionView, animated: animated, items: items)
     }

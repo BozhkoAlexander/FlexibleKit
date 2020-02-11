@@ -9,6 +9,37 @@
             {
                 "Type": 140,
                 "Style": { "Width": 4 },
+                "Title": "Poster"
+            },
+            {
+                "Type": 141,
+                "Style": {
+                    "Width": 8,
+                    "Margin": { "Left": 20, "Right": 20 }
+                },
+                "Items": [
+                    {
+                        "Type": 140,
+                        "Title": "Title"
+                    },
+                    {
+                        "Type": 140,
+                        "Title": "Subtitle"
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        "Type": 141,
+        "Style": {
+            "Margin": { "Left": 20, "Right": 20, "Bottom": 20 }
+        },
+        "Direction": "horizontal",
+        "Items": [
+            {
+                "Type": 140,
+                "Style": { "Width": 4 },
                 "Title": "Item 0"
             },
             {

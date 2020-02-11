@@ -16,11 +16,12 @@ open class FlexibleLayout<ItemIdentifierType>: NSObject where ItemIdentifierType
     public func update(_ collectionView: UICollectionView?, animated: Bool, items: Array<ItemIdentifierType>) {
         guard let view = collectionView else { return }
         let layout: UICollectionViewLayout
-        if #available(iOS 13.0, *) {
-            layout = modern(items)
-        } else {
-            layout = classic(items)
-        }
+//        if #available(iOS 13.0, *) {
+//            layout = modern(items)
+//        } else {
+//            layout = classic(items)
+//        }
+        layout = classic(items)
         
         view.setCollectionViewLayout(layout, animated: animated)
     }

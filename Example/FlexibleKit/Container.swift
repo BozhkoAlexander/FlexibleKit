@@ -80,7 +80,12 @@ class Container: Item {
             flag += 1
             let margin = this.style.margin
             let width = round(UIScreen.main.bounds.width * this.style.width) - margin.left - margin.right
-            let size = CGSize(width: width, height: 60)
+            let size: CGSize
+            if this.direction == .vertical {
+                size = CGSize(width: width, height: CGFloat(this.subitems.count) * 60)
+            } else {
+                size = CGSize(width: width, height: 60)
+            }
             let frame = CGRect(origin: .zero, size: size)
             let item = NSCollectionLayoutGroupCustomItem(frame: frame, zIndex: 0)
             
@@ -89,13 +94,16 @@ class Container: Item {
         items.append(containerItem)
         items.append(contentsOf: subitems.map({ $0.modernItem }))
         
-        let height = 60 + style.margin.top + style.margin.bottom
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(style.width), heightDimension: .absolute(height))
+        let groupSize: NSCollectionLayoutSize
         let group: NSCollectionLayoutGroup
         switch direction {
         case .vertical:
+            let height = (CGFloat(subitems.count) * 60) + style.margin.top + style.margin.bottom
+            groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(style.width), heightDimension: .absolute(height))
             group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: items)
         case .horizontal:
+            let height = 60 + style.margin.top + style.margin.bottom
+            groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(style.width), heightDimension: .absolute(height))
             group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: items)
         }
         group.contentInsets = style.directionalMargin
