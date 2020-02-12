@@ -45,11 +45,13 @@ open class ClassicLayoutGroup: ClassicLayoutItem {
         
         var layoutMap = [UICollectionViewLayoutAttributes]()
         
+        var decorationFrame: CGRect? = nil
         if let item = decorationItem {
             let storedCaret = caret
             let attrs = item.map(for: frame, caret: &caret, indexPath: &indexPath)
             layoutMap.append(contentsOf: attrs)
             
+            decorationFrame = attrs.first?.frame
             caret = storedCaret
         }
         
@@ -62,6 +64,10 @@ open class ClassicLayoutGroup: ClassicLayoutItem {
             let attrs = item.map(for: frame, caret: &caret, indexPath: &indexPath)
             layoutMap.append(contentsOf: attrs)
         })
+        
+        if let rect = decorationFrame {
+            caret.y = max(caret.y, rect.maxY)
+        }
         
         caret.x += contentInsets.right
         caret.y += contentInsets.bottom
