@@ -79,7 +79,7 @@ class ClassicLayout: UICollectionViewLayout {
         }
         availableFrame = availableFrame.inset(by: view.contentInset)
         
-        caret = availableFrame.origin
+        caret = .zero
         layoutMap = section.map(for: availableFrame, caret: &caret, index: 0)
         currentContentSize = CGSize(width: caret.x, height: caret.y)
     }
