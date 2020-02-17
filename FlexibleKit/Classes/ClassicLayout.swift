@@ -60,6 +60,12 @@ class ClassicLayout: UICollectionViewLayout {
         createLayoutMap()
     }
     
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
+        guard let view = collectionView else { return proposedContentOffset }
+        return view.contentOffset
+    }
+
+    
     // MARK: - Private methods
     
     private func createLayoutMap() {
