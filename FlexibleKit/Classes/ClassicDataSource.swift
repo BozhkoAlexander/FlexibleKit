@@ -30,7 +30,7 @@ open class ClassicDataSource<SectionIdentifierType, ItemIdentifierType>: NSObjec
     open func apply(_ snapshot: ClassicDiffableSnapshot<SectionIdentifierType, ItemIdentifierType>) {
         self.snapshot = snapshot
         
-        collectionView?.reloadData()
+        snapshot.update(collectionView)
     }
     
     // MARK: - Collection view data source
