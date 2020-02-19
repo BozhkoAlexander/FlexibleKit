@@ -33,8 +33,9 @@ public extension FlexibleDataSource {
         layout.update(collectionView, animated: animated, snapshot: classic.snapshot)
     }
     
-    func update(_ identifiers: [ItemIdentifierType]) {
-        classic.snapshot.items = identifiers
+    func reloadData(_ identifiers: [ItemIdentifierType]) {
+        classic.snapshot.reloadData(identifiers)
+        classic.snapshot.update(collectionView)
         layout.update(collectionView, animated: false, snapshot: classic.snapshot)
     }
     

@@ -27,8 +27,7 @@ public struct ClassicDiffableSnapshot<SectionIdentifierType, ItemIdentifierType>
                 var section = section(),
                 let sectionIndex = sectionIndex()
             else { return }
-            
-            tasks = [.reloadData]
+
             section.items = newValue
             
             image[sectionIndex] = section
@@ -62,6 +61,11 @@ public struct ClassicDiffableSnapshot<SectionIdentifierType, ItemIdentifierType>
 
     public mutating func deleteItem(_ identifier: ItemIdentifierType, at indexPath: IndexPath) {
         tasks.append(.deleteItem(indexPath: indexPath))
+    }
+    
+    public mutating func reloadData(_ identifiers: [ItemIdentifierType]) {
+        items = identifiers
+        tasks = [.reloadData]
     }
     
     // MARK: - Private methods

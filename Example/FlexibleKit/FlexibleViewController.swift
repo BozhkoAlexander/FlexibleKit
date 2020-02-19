@@ -36,7 +36,7 @@ class FlexibleViewController: UIViewController, UICollectionViewDelegate {
         }
         dataSource.register(cells: ItemType.cellsInfo)
         model.load()
-        dataSource.update(model.flatItems)
+        dataSource.reloadData(model.flatItems)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
             self?.update()
