@@ -27,7 +27,8 @@ public extension FlexibleDataSource {
         }
     }
     
-    func didChangeContent(_ animated: Bool) {
+    func didChangeContent(_ identifiers: [ItemIdentifierType], animated: Bool) {
+        classic.snapshot.items = identifiers
         classic.snapshot.update(collectionView)
         layout.update(collectionView, animated: animated, snapshot: classic.snapshot)
     }

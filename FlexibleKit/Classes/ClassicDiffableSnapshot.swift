@@ -52,45 +52,16 @@ public struct ClassicDiffableSnapshot<SectionIdentifierType, ItemIdentifierType>
     }
     
     public mutating func insertItem(_ identifier: ItemIdentifierType, at indexPath: IndexPath) {
-        guard
-            var section = section(),
-            let sectionIndex = sectionIndex()
-        else { return }
-        
         tasks.append(.insertItem(indexPath: indexPath))
-        section.items.append(identifier)
-        
-        image[sectionIndex] = section
     }
     
     
     public mutating func reloadItem(_ identifier: ItemIdentifierType, at indexPath: IndexPath) {
-        guard
-            var section = section(),
-            let sectionIndex = sectionIndex()
-        else { return }
-        
         tasks.append(.reloadItem(indexPath: indexPath))
-        
-        let index = indexPath.item
-        section.items.remove(at: index)
-        section.items.insert(identifier, at: index)
-        
-        image[sectionIndex] = section
     }
 
     public mutating func deleteItem(_ identifier: ItemIdentifierType, at indexPath: IndexPath) {
-        guard
-            var section = section(),
-            let sectionIndex = sectionIndex()
-        else { return }
-        
         tasks.append(.deleteItem(indexPath: indexPath))
-        
-        let index = indexPath.item
-        section.items.remove(at: index)
-        
-        image[sectionIndex] = section
     }
     
     // MARK: - Private methods

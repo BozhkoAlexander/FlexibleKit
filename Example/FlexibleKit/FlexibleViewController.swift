@@ -38,12 +38,20 @@ class FlexibleViewController: UIViewController, UICollectionViewDelegate {
         model.load()
         dataSource.update(model.flatItems)
         
-//        dataSource.willChangeContent()
-//        model.flatItems.enumerated().forEach({ index, item in
-//            let path = IndexPath(item: index, section: 0)
-//            dataSource.changeContent(item, at: path, for: .insert)
-//        })
-//        dataSource.didChangeContent(false)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.update()
+        }
+    }
+    
+    func update() {
+        let index = 4
+        let path = IndexPath(item: index, section: 0)
+        let item = model.items[index]
+        model.items.remove(at: index)
+        
+        dataSource.willChangeContent()
+        dataSource.changeContent(item, at: path, for: .delete)
+        dataSource.didChangeContent(model.flatItems, animated: true)
     }
     
     // MARK: - Collection view delegate
