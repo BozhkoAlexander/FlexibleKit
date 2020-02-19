@@ -36,7 +36,14 @@ class FlexibleViewController: UIViewController, UICollectionViewDelegate {
         }
         dataSource.register(cells: ItemType.cellsInfo)
         model.load()
-        dataSource.update(model.items, flat: model.flatItems, animated: false)
+        dataSource.update(model.flatItems)
+        
+//        dataSource.willChangeContent()
+//        model.flatItems.enumerated().forEach({ index, item in
+//            let path = IndexPath(item: index, section: 0)
+//            dataSource.changeContent(item, at: path, for: .insert)
+//        })
+//        dataSource.didChangeContent(false)
     }
     
     // MARK: - Collection view delegate

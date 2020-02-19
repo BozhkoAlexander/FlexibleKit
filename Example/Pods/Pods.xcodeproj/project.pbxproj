@@ -26,6 +26,7 @@
 		FA9014D823EC69EB006DF7EA /* ClassicLayoutSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014D723EC69EB006DF7EA /* ClassicLayoutSection.swift */; };
 		FA9014DA23EC6A1C006DF7EA /* ClassicLayoutGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014D923EC6A1C006DF7EA /* ClassicLayoutGroup.swift */; };
 		FA9014DC23EC6BFE006DF7EA /* ClassicLayoutSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014DB23EC6BFE006DF7EA /* ClassicLayoutSize.swift */; };
+		FA98D4D223FD292B0038B982 /* FlexibleDataSource+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98D4D123FD292B0038B982 /* FlexibleDataSource+CoreData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		FA9014D723EC69EB006DF7EA /* ClassicLayoutSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassicLayoutSection.swift; path = FlexibleKit/Classes/ClassicLayoutSection.swift; sourceTree = "<group>"; };
 		FA9014D923EC6A1C006DF7EA /* ClassicLayoutGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassicLayoutGroup.swift; path = FlexibleKit/Classes/ClassicLayoutGroup.swift; sourceTree = "<group>"; };
 		FA9014DB23EC6BFE006DF7EA /* ClassicLayoutSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassicLayoutSize.swift; path = FlexibleKit/Classes/ClassicLayoutSize.swift; sourceTree = "<group>"; };
+		FA98D4D123FD292B0038B982 /* FlexibleDataSource+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlexibleDataSource+CoreData.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 				04876A430AE7D20822DB9EB08E36A2E6 /* Pod */,
 				103E3C6B939D02B789559E11F9CBD64D /* Support Files */,
 				FA9014B623EC160B006DF7EA /* FlexibleDataSource.swift */,
+				FA98D4D123FD292B0038B982 /* FlexibleDataSource+CoreData.swift */,
 				FA9014B823EC183F006DF7EA /* ClassicDataSource.swift */,
 				FA9014D323EC5EA5006DF7EA /* ClassicDiffableSnapshot.swift */,
 				FA9014CF23EC4F34006DF7EA /* FlexibleProvider.swift */,
@@ -401,6 +404,7 @@
 				FA9014D823EC69EB006DF7EA /* ClassicLayoutSection.swift in Sources */,
 				FA9014DA23EC6A1C006DF7EA /* ClassicLayoutGroup.swift in Sources */,
 				FA9014D623EC65B4006DF7EA /* ClassicLayoutItem.swift in Sources */,
+				FA98D4D223FD292B0038B982 /* FlexibleDataSource+CoreData.swift in Sources */,
 				FA9014D423EC5EA5006DF7EA /* ClassicDiffableSnapshot.swift in Sources */,
 				FA9014DC23EC6BFE006DF7EA /* ClassicLayoutSize.swift in Sources */,
 				FA9014D023EC4F34006DF7EA /* FlexibleProvider.swift in Sources */,

@@ -17,9 +17,6 @@ open class FlexibleDataSource<ItemIdentifierType>: NSObject where ItemIdentifier
     
     // MARK: - Helpers
     
-    @available(iOS 13.0, *)
-    internal typealias Modern = UICollectionViewDiffableDataSource<Section, ItemIdentifierType>
-    
     internal typealias Classic = ClassicDataSource<Section, ItemIdentifierType>
     
     public typealias FlexibleCellProvider = (UICollectionView, IndexPath, ItemIdentifierType) -> UICollectionViewCell?
@@ -28,20 +25,14 @@ open class FlexibleDataSource<ItemIdentifierType>: NSObject where ItemIdentifier
     
     private var _dataSource: AnyObject? = nil
     
-    @available(iOS 13.0, *)
-    private var modern: Modern! {
-        get { return _dataSource as? Modern }
-        set { _dataSource = newValue }
-    }
-    
-    private var classic: Classic! {
+    internal var classic: Classic! {
         get { return _dataSource as? Classic }
         set { _dataSource = newValue }
     }
     
-    private weak var collectionView: UICollectionView? = nil
+    internal weak var collectionView: UICollectionView? = nil
     
-    private var layout: FlexibleLayout<ItemIdentifierType>
+    internal var layout: FlexibleLayout<ItemIdentifierType>
     
     // MARK: - Life cycle
     
@@ -54,12 +45,8 @@ open class FlexibleDataSource<ItemIdentifierType>: NSObject where ItemIdentifier
     
     /// Call this when the collection view is initialized.
     open func start(with collectionView: UICollectionView, cellProvider: @escaping FlexibleCellProvider) {
-//        if #available(iOS 13.0, *) {
-//            modern = Modern(collectionView: collectionView, cellProvider: cellProvider)
-//        } else {
-//            classic = Classic(collectionView: collectionView, cellProvider: cellProvider)
-//        }
         classic = Classic(collectionView: collectionView, cellProvider: cellProvider)
+        classic.snapshot.appendSections([.main])
         
         self.collectionView = collectionView
     }
@@ -71,40 +58,9 @@ open class FlexibleDataSource<ItemIdentifierType>: NSObject where ItemIdentifier
         })
     }
     
-    /// Call this method whenever the data model is changed.
-    open func update(_ items: Array<ItemIdentifierType>, snapshot: ClassicDiffableSnapshot<Section, ItemIdentifierType>, animated: Bool) {
-//        if #available(iOS 13.0, *) {
-//            modernUpdate(flatIems)
-//        } else {
-//            classicUpdate(flatIems)
-//        }
-        classic.apply(snapshot)
-        
-        layout.update(collectionView, animated: animated, items: items)
-    }
-    
     /// Call this method to stop data srouce work.
     open func stop() {
         collectionView = nil
-    }
-    
-    // MARK: - Private methods
-    
-    @available(iOS 13.0, *)
-    private func modernUpdate(_ items: Array<ItemIdentifierType>) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, ItemIdentifierType>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(items)
-        
-        modern.apply(snapshot)
-    }
-    
-    private func classicUpdate(_ items: Array<ItemIdentifierType>) {
-        var snapshot = ClassicDiffableSnapshot<Section, ItemIdentifierType>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(items)
-        
-        classic.apply(snapshot)
     }
 
 }

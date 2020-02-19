@@ -17,7 +17,29 @@ public struct ClassicDiffableSnapshot<SectionIdentifierType, ItemIdentifierType>
     
     private var tasks: [ClassicDiffableTask] = []
     
+    var items: [ItemIdentifierType] {
+        get {
+            guard let section = section() else { return [] }
+            return section.items
+        }
+        set {
+            guard
+                var section = section(),
+                let sectionIndex = sectionIndex()
+            else { return }
+            
+            tasks = [.reloadData]
+            section.items = newValue
+            
+            image[sectionIndex] = section
+        }
+    }
+    
     // MARK: - Public methods
+    
+    public mutating func willChange() {
+        tasks = []
+    }
     
     public mutating func appendSections(_ newValue: [SectionIdentifierType]) {
         let startIndex = image.count
@@ -29,98 +51,44 @@ public struct ClassicDiffableSnapshot<SectionIdentifierType, ItemIdentifierType>
         })
     }
     
-    public mutating func appendItems(_ identifiers: [ItemIdentifierType], toSection sectionIdentifier: SectionIdentifierType? = nil) {
-        guard
-            var section = section(sectionIdentifier),
-            let sectionIndex = sectionIndex(sectionIdentifier)
-        else { return }
-        
-        let startIndex = section.items.count
-        identifiers.enumerated().forEach({ (offset, identifier) in
-            let indexPath = IndexPath(item: startIndex + offset, section: sectionIndex)
-            tasks.append(.insertItem(indexPath: indexPath))
-        })
-        section.items.append(contentsOf: identifiers)
-        
-        image[sectionIndex] = section
-    }
-
-    public mutating func insertItems(_ identifiers: [ItemIdentifierType], beforeItem beforeIdentifier: ItemIdentifierType) {
+    public mutating func insertItem(_ identifier: ItemIdentifierType, at indexPath: IndexPath) {
         guard
             var section = section(),
             let sectionIndex = sectionIndex()
         else { return }
         
-        if let startIndex = section.items.firstIndex(where: { $0 == beforeIdentifier }) {
-            identifiers.enumerated().forEach({ (offset, identifier) in
-                let indexPath = IndexPath(item: startIndex + offset, section: sectionIndex)
-                tasks.append(.insertItem(indexPath: indexPath))
-            })
-            
-            section.items.insert(contentsOf: identifiers, at: startIndex)
-        } else {
-            appendItems(identifiers)
-        }
+        tasks.append(.insertItem(indexPath: indexPath))
+        section.items.append(identifier)
         
         image[sectionIndex] = section
     }
-
-    public mutating func insertItems(_ identifiers: [ItemIdentifierType], afterItem afterIdentifier: ItemIdentifierType) {
+    
+    
+    public mutating func reloadItem(_ identifier: ItemIdentifierType, at indexPath: IndexPath) {
         guard
             var section = section(),
             let sectionIndex = sectionIndex()
         else { return }
         
-        if var startIndex = section.items.firstIndex(where: { $0 == afterIdentifier }) {
-            startIndex += 1
-            identifiers.enumerated().forEach({ (offset, identifier) in
-                let indexPath = IndexPath(item: startIndex + offset, section: sectionIndex)
-                tasks.append(.insertItem(indexPath: indexPath))
-            })
-            
-            section.items.insert(contentsOf: identifiers, at: startIndex)
-        } else {
-            appendItems(identifiers)
-        }
+        tasks.append(.reloadItem(indexPath: indexPath))
+        
+        let index = indexPath.item
+        section.items.remove(at: index)
+        section.items.insert(identifier, at: index)
         
         image[sectionIndex] = section
     }
 
-    public mutating func deleteItems(_ identifiers: [ItemIdentifierType]) {
+    public mutating func deleteItem(_ identifier: ItemIdentifierType, at indexPath: IndexPath) {
         guard
             var section = section(),
             let sectionIndex = sectionIndex()
         else { return }
         
-        identifiers.forEach({ identifier in
-            if let index = section.items.firstIndex(where: { $0 == identifier }) {
-                let indexPath = IndexPath(item: index, section: sectionIndex)
-                tasks.append(.deleteItem(indexPath: indexPath))
-                section.items.remove(at: index)
-            }
-        })
+        tasks.append(.deleteItem(indexPath: indexPath))
         
-        image[sectionIndex] = section
-    }
-
-    public mutating func deleteAllItems() {
-        tasks = [.reloadData]
-        image = []
-    }
-
-    public mutating func reloadItems(_ identifiers: [ItemIdentifierType]) {
-        guard
-            var section = section(),
-            let sectionIndex = sectionIndex()
-        else { return }
-        
-        identifiers.forEach({ identifier in
-            if let index = section.items.firstIndex(where: { $0 == identifier }) {
-                let indexPath = IndexPath(item: index, section: sectionIndex)
-                tasks.append(.deleteItem(indexPath: indexPath))
-                section.items.remove(at: index)
-            }
-        })
+        let index = indexPath.item
+        section.items.remove(at: index)
         
         image[sectionIndex] = section
     }
@@ -138,7 +106,7 @@ public struct ClassicDiffableSnapshot<SectionIdentifierType, ItemIdentifierType>
     }
     
     private func sectionIndex(_ identifier: SectionIdentifierType? = nil) -> Int? {
-        if identifier == nil && !image.isEmpty { return image.count }
+        if identifier == nil && !image.isEmpty { return image.count - 1 }
         if let result = image.enumerated().filter({ $0.element.identifier == identifier }).first?.offset {
             return result
         }
@@ -164,7 +132,7 @@ public struct ClassicDiffableSnapshot<SectionIdentifierType, ItemIdentifierType>
     
     // MARK: - Tasks
     
-    mutating func update(_ collectionView: UICollectionView?) {
+    func update(_ collectionView: UICollectionView?) {
         if tasks.count == 1 && tasks[0] == .reloadData {
             collectionView?.reloadData()
         } else {
@@ -175,15 +143,13 @@ public struct ClassicDiffableSnapshot<SectionIdentifierType, ItemIdentifierType>
                     case .reloadSection(let index): collectionView?.reloadSections(IndexSet(integer: index))
                     case .deleteSection(let index): collectionView?.deleteSections(IndexSet(integer: index))
                     case .insertItem(let path): collectionView?.insertItems(at: [path])
-                    case .updateItem(let path): collectionView?.reloadItems(at: [path])
+                    case .reloadItem(let path): collectionView?.reloadItems(at: [path])
                     case .deleteItem(let path): collectionView?.deleteItems(at: [path])
                     default: break
                     }
                 })
             }, completion: nil)
         }
-        
-        tasks = []
     }
 
 }
@@ -200,7 +166,7 @@ public enum ClassicDiffableTask: Equatable {
     
     case insertItem(indexPath: IndexPath)
     
-    case updateItem(indexPath: IndexPath)
+    case reloadItem(indexPath: IndexPath)
     
     case deleteItem(indexPath: IndexPath)
     

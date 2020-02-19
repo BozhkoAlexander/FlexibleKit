@@ -19,38 +19,34 @@ class Item: NSObject, FlexibleProvider {
     
     var title: String?
     
+    weak var parent: Item? = nil
+    
     // MARK: - Life cycle
     
-    class func insert(_ value: Any?) -> Item {
+    class func insert(_ value: Any?, parent: Item?) -> Item {
         let json = value as? Dictionary<String, Any>
         let type = ItemType(json?["Type"])
         
         switch type {
-        case .flexible: return Item(value)
-        case .container: return Container(value)
+        case .flexible: return Item(value, parent: parent)
+        case .container: return Container(value, parent: parent)
         }
     }
     
-    init(_ value: Any?) {
+    init(_ value: Any?, parent: Item?) {
         let json = value as? Dictionary<String, Any>
         self.type = ItemType(json?["Type"])
         self.style = Style(json?["Style"])
         self.title = json?["Title"] as? String
+        self.parent = parent
         super.init()
      }
     
     // MARK: - Flexible provider
     
-    var flatItems: [Item] { return [self] } 
+    var flatItems: [Item] { return [self] }
     
-    @available(iOS 13.0, *)
-    var modernItem: NSCollectionLayoutItem {
-        let height = 60 + style.margin.top + style.margin.bottom
-        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(style.width), heightDimension: .absolute(height))
-        let item = NSCollectionLayoutItem(layoutSize: size)
-        item.contentInsets = style.directionalMargin
-        return item
-    }
+    var isSurface: Bool { return parent == nil }
     
     var classicItem: ClassicLayoutItem {
         let height = 60 + style.margin.top + style.margin.bottom

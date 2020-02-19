@@ -16,11 +16,6 @@ extension Item {
         
         var width: CGFloat = 1
         
-        @available(iOS 13.0, *)
-        var directionalMargin: NSDirectionalEdgeInsets {
-            return NSDirectionalEdgeInsets(top: margin.top, leading: margin.left, bottom: margin.bottom, trailing: margin.right)
-        }
-        
         init(_ value: Any?) {
             let json = value as? Dictionary<String, Any>
             super.init()

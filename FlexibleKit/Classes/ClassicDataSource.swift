@@ -27,9 +27,7 @@ open class ClassicDataSource<SectionIdentifierType, ItemIdentifierType>: NSObjec
         collectionView.dataSource = self
     }
     
-    open func apply(_ snapshot: ClassicDiffableSnapshot<SectionIdentifierType, ItemIdentifierType>) {
-        self.snapshot = snapshot
-        
+    open func applyChanges() {
         snapshot.update(collectionView)
     }
     

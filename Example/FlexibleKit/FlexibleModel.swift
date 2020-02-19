@@ -37,7 +37,7 @@ class FlexibleModel: NSObject {
             items = []
             return
         }
-        items = json.map({ Item.insert($0) })
+        items = json.map({ Item.insert($0, parent: nil) })
     }
 
 }
