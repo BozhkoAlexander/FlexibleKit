@@ -21,6 +21,8 @@ open class ClassicLayoutGroup: ClassicLayoutItem {
     
     internal var direction: Direction
     
+    open var padding: UIEdgeInsets = .zero
+    
     open var subitems: [ClassicLayoutItem] = []
     
     open var decorationItem: ClassicLayoutItem? = nil
@@ -41,7 +43,7 @@ open class ClassicLayoutGroup: ClassicLayoutItem {
         caret.y += contentInsets.top
         size.width -= contentInsets.left + contentInsets.right
         size.height -= contentInsets.top + contentInsets.bottom
-        let frame = CGRect(origin: caret, size: size)
+        var frame = CGRect(origin: caret, size: size)
         
         var layoutMap = [UICollectionViewLayoutAttributes]()
         
@@ -54,6 +56,14 @@ open class ClassicLayoutGroup: ClassicLayoutItem {
             decorationFrame = attrs.first?.frame
             caret = storedCaret
         }
+        
+        frame.origin.x += padding.left
+        frame.origin.y += padding.top
+        frame.size.width -= padding.left + padding.right
+        frame.size.height -= padding.top + padding.bottom
+        
+        caret.x = frame.minX
+        caret.y = frame.minY
         
         subitems.enumerated().forEach({ index, item in
             switch direction {
