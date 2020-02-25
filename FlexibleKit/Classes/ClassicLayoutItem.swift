@@ -15,6 +15,8 @@ open class ClassicLayoutItem: NSObject {
     
     open var contentInsets: UIEdgeInsets = .zero
     
+    open var verticalAlignment: VerticalAlignment = .top
+    
     // MARK: - Life cycle
     
     public init(layoutSize: ClassicLayoutSize, supplementaryItems: [Any] = []) { // TODO
@@ -27,7 +29,13 @@ open class ClassicLayoutItem: NSObject {
         let lSyze = CGSize(
             width: layoutSize.widthDimension.value(for: bounds.size),
             height: layoutSize.heightDimension.value(for: bounds.size))
-        let lFrame = CGRect(origin: caret, size: lSyze)
+        var lFrame = CGRect(origin: caret, size: lSyze)
+        switch verticalAlignment {
+        case .center: lFrame.origin.y = round(0.5 * (bounds.height - lFrame.height))
+        case .bottom: lFrame.origin.y = round(bounds.height - lFrame.height)
+        case .justify: lFrame.size.height = bounds.height
+        default: break
+        }
         // aFrame is attributes frame (real collection view cell's frame)
         let aFrame = lFrame.inset(by: contentInsets)
         // move caret
@@ -43,4 +51,24 @@ open class ClassicLayoutItem: NSObject {
         return [attrs]
     }
 
+}
+
+public enum VerticalAlignment: String {
+    
+    case top = "top"
+    
+    case center = "center"
+    
+    case bottom = "bottom"
+    
+    case justify = "jsutify"
+    
+    public init(_ value: Any?) {
+        guard let raw = value as? String, let alignment = VerticalAlignment(rawValue: raw) else {
+            self = .top
+            return
+        }
+        self = alignment
+    }
+    
 }
