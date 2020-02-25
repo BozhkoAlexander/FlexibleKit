@@ -31,8 +31,8 @@ open class ClassicLayoutItem: NSObject {
             height: layoutSize.heightDimension.value(for: bounds.size))
         var lFrame = CGRect(origin: caret, size: lSyze)
         switch verticalAlignment {
-        case .center: lFrame.origin.y = round(0.5 * (bounds.height - lFrame.height))
-        case .bottom: lFrame.origin.y = round(bounds.height - lFrame.height)
+        case .center: lFrame.origin.y = caret.y + round(0.5 * (bounds.height - lFrame.height))
+        case .bottom: lFrame.origin.y = caret.y + round(bounds.height - lFrame.height)
         case .justify: lFrame.size.height = bounds.height
         default: break
         }
