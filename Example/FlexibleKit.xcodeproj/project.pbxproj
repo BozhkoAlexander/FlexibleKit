@@ -24,6 +24,7 @@
 		FA9014C423EC3756006DF7EA /* FlexibleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014C323EC3756006DF7EA /* FlexibleCell.swift */; };
 		FA9014C823EC37CD006DF7EA /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014C723EC37CD006DF7EA /* ItemType.swift */; };
 		FA9014D223EC574C006DF7EA /* Item+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014D123EC574C006DF7EA /* Item+Style.swift */; };
+		FAE9F7AC24055EF000973675 /* FlexibleReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE9F7AB24055EF000973675 /* FlexibleReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		FA9014C323EC3756006DF7EA /* FlexibleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleCell.swift; sourceTree = "<group>"; };
 		FA9014C723EC37CD006DF7EA /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		FA9014D123EC574C006DF7EA /* Item+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+Style.swift"; sourceTree = "<group>"; };
+		FAE9F7AB24055EF000973675 /* FlexibleReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				607FACD71AFB9204008FA782 /* FlexibleViewController.swift */,
 				FA9014B423EC149E006DF7EA /* FlexibleView.swift */,
 				FA9014C323EC3756006DF7EA /* FlexibleCell.swift */,
+				FAE9F7AB24055EF000973675 /* FlexibleReusableView.swift */,
 				FA585F9123EDA39F00C203E9 /* FlexibleContainerCell.swift */,
 				FA9014BE23EC1F73006DF7EA /* FlexibleModel.swift */,
 				FA9014C723EC37CD006DF7EA /* ItemType.swift */,
@@ -370,6 +373,7 @@
 			files = (
 				FA9014C423EC3756006DF7EA /* FlexibleCell.swift in Sources */,
 				FA9014BF23EC1F73006DF7EA /* FlexibleModel.swift in Sources */,
+				FAE9F7AC24055EF000973675 /* FlexibleReusableView.swift in Sources */,
 				FA9014C823EC37CD006DF7EA /* ItemType.swift in Sources */,
 				607FACD81AFB9204008FA782 /* FlexibleViewController.swift in Sources */,
 				FA585F9223EDA39F00C203E9 /* FlexibleContainerCell.swift in Sources */,

@@ -105,6 +105,11 @@ public struct ClassicDiffableSnapshot<SectionIdentifierType, ItemIdentifierType>
         return section.items[indexPath.item]
     }
     
+    func section(at indexPath: IndexPath) -> SectionIdentifierType? {
+        guard indexPath.section < image.count else { return nil }
+        return image[indexPath.section].identifier
+    }
+    
     // MARK: - Tasks
     
     func update(_ collectionView: UICollectionView?) {

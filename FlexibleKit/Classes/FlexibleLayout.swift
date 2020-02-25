@@ -7,9 +7,9 @@
 
 import UIKit
 
-open class FlexibleLayout<ItemIdentifierType>: NSObject where ItemIdentifierType: FlexibleProvider {
+open class FlexibleLayout<SectionIdentifierType, ItemIdentifierType>: NSObject where SectionIdentifierType: FlexibleSupplementaryProvider, ItemIdentifierType: FlexibleProvider {
     
-    public typealias ClassicSnapshot = ClassicDiffableSnapshot<Section, ItemIdentifierType>
+    public typealias ClassicSnapshot = ClassicDiffableSnapshot<SectionIdentifierType, ItemIdentifierType>
     
     // MARK: - Properties
     
@@ -27,7 +27,14 @@ open class FlexibleLayout<ItemIdentifierType>: NSObject where ItemIdentifierType
         let groupSize = ClassicLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))
         let group = ClassicLayoutGroup.vertical(layoutSize: groupSize, subitems: items)
         
-        let section = ClassicLayoutSection(group: group)
+        var supplementaryItems = [ClassicLayoutSupplementaryItem]()
+        let path = IndexPath(item: 0, section: 0)
+        if let section = snapshot.section(at: path) {
+            supplementaryItems.append(section.headerItem)
+            supplementaryItems.append(section.footerItem)
+        }
+        
+        let section = ClassicLayoutSection(group: group, supplementaryItems: supplementaryItems)
         return ClassicLayout(section: section)
     }
 

@@ -7,19 +7,15 @@
 
 import UIKit
 
-public enum Section: Hashable {
-    
-    case main
-    
-}
-
-open class FlexibleDataSource<ItemIdentifierType>: NSObject where ItemIdentifierType: FlexibleProvider {
+open class FlexibleDataSource<SectionIdentifierType, ItemIdentifierType>: NSObject where SectionIdentifierType: FlexibleSupplementaryProvider, ItemIdentifierType: FlexibleProvider {
     
     // MARK: - Helpers
     
-    internal typealias Classic = ClassicDataSource<Section, ItemIdentifierType>
+    internal typealias Classic = ClassicDataSource<SectionIdentifierType, ItemIdentifierType>
     
     public typealias FlexibleCellProvider = (UICollectionView, IndexPath, ItemIdentifierType) -> UICollectionViewCell?
+    
+    public typealias FlexibleViewProvider = (UICollectionView, String, IndexPath, SectionIdentifierType) -> UICollectionReusableView?
     
     // MARK: - Properties
     
@@ -32,12 +28,12 @@ open class FlexibleDataSource<ItemIdentifierType>: NSObject where ItemIdentifier
     
     internal weak var collectionView: UICollectionView? = nil
     
-    internal var layout: FlexibleLayout<ItemIdentifierType>
+    internal var layout: FlexibleLayout<SectionIdentifierType, ItemIdentifierType>
     
     // MARK: - Life cycle
     
     override public init() {
-        self.layout = FlexibleLayout<ItemIdentifierType>()
+        self.layout = FlexibleLayout<SectionIdentifierType, ItemIdentifierType>()
         super.init()
     }
     
@@ -46,7 +42,6 @@ open class FlexibleDataSource<ItemIdentifierType>: NSObject where ItemIdentifier
     /// Call this when the collection view is initialized.
     open func start(with collectionView: UICollectionView, cellProvider: @escaping FlexibleCellProvider) {
         classic = Classic(collectionView: collectionView, cellProvider: cellProvider)
-        classic.snapshot.appendSections([.main])
         
         self.collectionView = collectionView
     }
@@ -56,6 +51,19 @@ open class FlexibleDataSource<ItemIdentifierType>: NSObject where ItemIdentifier
         cells.forEach({ cellId, cellClass in
             collectionView?.register(cellClass, forCellWithReuseIdentifier: cellId)
         })
+    }
+    
+    /// Call this method after start(with:cellProvider:) to register reusable views.
+    open func register(views: Dictionary<String, (String, UICollectionReusableView.Type)>) {
+        views.forEach({ viewId, v in
+            collectionView?.register(v.1, forSupplementaryViewOfKind: v.0, withReuseIdentifier: viewId)
+        })
+    }
+    
+    /// Call this to define section.
+    open func appendSection(_ section: SectionIdentifierType, viewProvider: FlexibleViewProvider?) {
+        classic.viewProvider = viewProvider
+        classic.snapshot.appendSections([section])
     }
     
     /// Call this method to stop data srouce work.

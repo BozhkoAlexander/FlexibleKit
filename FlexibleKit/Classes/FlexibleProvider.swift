@@ -14,3 +14,11 @@ public protocol FlexibleProvider: Hashable {
     var isSurface: Bool { get }
     
 }
+
+public protocol FlexibleSupplementaryProvider: Hashable {
+    
+    var headerItem: ClassicLayoutSupplementaryItem { get }
+    
+    var footerItem: ClassicLayoutSupplementaryItem { get }
+    
+}

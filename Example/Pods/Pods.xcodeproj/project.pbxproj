@@ -27,6 +27,7 @@
 		FA9014DA23EC6A1C006DF7EA /* ClassicLayoutGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014D923EC6A1C006DF7EA /* ClassicLayoutGroup.swift */; };
 		FA9014DC23EC6BFE006DF7EA /* ClassicLayoutSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9014DB23EC6BFE006DF7EA /* ClassicLayoutSize.swift */; };
 		FA98D4D423FD4C1B0038B982 /* FlexibleDataSource+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98D4D323FD4C1B0038B982 /* FlexibleDataSource+CoreData.swift */; };
+		FAE9F7AA2405579D00973675 /* ClassicLayoutSupplementaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE9F7A92405579D00973675 /* ClassicLayoutSupplementaryItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		FA9014D923EC6A1C006DF7EA /* ClassicLayoutGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassicLayoutGroup.swift; path = FlexibleKit/Classes/ClassicLayoutGroup.swift; sourceTree = "<group>"; };
 		FA9014DB23EC6BFE006DF7EA /* ClassicLayoutSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassicLayoutSize.swift; path = FlexibleKit/Classes/ClassicLayoutSize.swift; sourceTree = "<group>"; };
 		FA98D4D323FD4C1B0038B982 /* FlexibleDataSource+CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FlexibleDataSource+CoreData.swift"; path = "FlexibleKit/Classes/FlexibleDataSource+CoreData.swift"; sourceTree = "<group>"; };
+		FAE9F7A92405579D00973675 /* ClassicLayoutSupplementaryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassicLayoutSupplementaryItem.swift; path = FlexibleKit/Classes/ClassicLayoutSupplementaryItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 				FA9014CB23EC3BB0006DF7EA /* ClassicLayout.swift */,
 				FA9014DB23EC6BFE006DF7EA /* ClassicLayoutSize.swift */,
 				FA9014D523EC65B4006DF7EA /* ClassicLayoutItem.swift */,
+				FAE9F7A92405579D00973675 /* ClassicLayoutSupplementaryItem.swift */,
 				FA9014D923EC6A1C006DF7EA /* ClassicLayoutGroup.swift */,
 				FA9014D723EC69EB006DF7EA /* ClassicLayoutSection.swift */,
 			);
@@ -408,6 +411,7 @@
 				FA9014DC23EC6BFE006DF7EA /* ClassicLayoutSize.swift in Sources */,
 				FA9014D023EC4F34006DF7EA /* FlexibleProvider.swift in Sources */,
 				FA9014B923EC183F006DF7EA /* ClassicDataSource.swift in Sources */,
+				FAE9F7AA2405579D00973675 /* ClassicLayoutSupplementaryItem.swift in Sources */,
 				3F5E00C5C08EB04672EB250F5120CD21 /* FlexibleKit-dummy.m in Sources */,
 				FA9014CC23EC3BB0006DF7EA /* ClassicLayout.swift in Sources */,
 				FA98D4D423FD4C1B0038B982 /* FlexibleDataSource+CoreData.swift in Sources */,

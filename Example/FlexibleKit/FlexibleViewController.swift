@@ -13,7 +13,7 @@ class FlexibleViewController: UIViewController, UICollectionViewDelegate {
     
     // MARK: - Properties
     
-    var dataSource: FlexibleDataSource<Item>!
+    var dataSource: FlexibleDataSource<FlexibleModel, Item>!
     
     var model = FlexibleModel()
     
@@ -30,11 +30,15 @@ class FlexibleViewController: UIViewController, UICollectionViewDelegate {
         
         title = "Flexible page"
         
-        dataSource = FlexibleDataSource<Item>()
+        dataSource = FlexibleDataSource<FlexibleModel, Item>()
         dataSource.start(with: flexibleView.collectionView) { (collectionView, indexPath, item) -> UICollectionViewCell? in
             return collectionView.dequeueReusableCell(withReuseIdentifier: item.type.cellId, for: indexPath)
         }
+        dataSource.appendSection(model) { (collectionView, kind, indexPath, model) -> UICollectionReusableView? in
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FlexibleModel.viewId(for: kind), for: indexPath)
+        }
         dataSource.register(cells: ItemType.cellsInfo)
+        dataSource.register(views: FlexibleModel.viewsInfo)
         model.load()
         dataSource.reloadData(model.flatItems)
         
@@ -59,6 +63,15 @@ class FlexibleViewController: UIViewController, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let cell = cell as? FlexibleCell else { return }
         cell.willDisplay(model.flatItems[indexPath.item])
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        guard let view = view as? FlexibleReusableView else { return }
+        if elementKind == UICollectionView.elementKindSectionHeader {
+            view.willDisplay(model.header)
+        } else {
+            view.willDisplay(model.footer)
+        }
     }
 
 }

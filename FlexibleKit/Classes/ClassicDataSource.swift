@@ -7,19 +7,21 @@
 
 import UIKit
 
-open class ClassicDataSource<SectionIdentifierType, ItemIdentifierType>: NSObject, UICollectionViewDataSource where SectionIdentifierType: Hashable, ItemIdentifierType: FlexibleProvider {
+open class ClassicDataSource<SectionIdentifierType, ItemIdentifierType>: NSObject, UICollectionViewDataSource where SectionIdentifierType: FlexibleSupplementaryProvider, ItemIdentifierType: FlexibleProvider {
     
     // MARK: - Properties
     
     private weak var collectionView: UICollectionView? = nil
     
-    public var cellProvider: FlexibleDataSource<ItemIdentifierType>.FlexibleCellProvider
+    public var cellProvider: FlexibleDataSource<SectionIdentifierType, ItemIdentifierType>.FlexibleCellProvider
+    
+    public var viewProvider: FlexibleDataSource<SectionIdentifierType, ItemIdentifierType>.FlexibleViewProvider? = nil
     
     public var snapshot = ClassicDiffableSnapshot<SectionIdentifierType, ItemIdentifierType>()
     
     // MARK: - Life cycle
     
-    public init(collectionView: UICollectionView, cellProvider: @escaping FlexibleDataSource<ItemIdentifierType>.FlexibleCellProvider) {
+    public init(collectionView: UICollectionView, cellProvider: @escaping FlexibleDataSource<SectionIdentifierType, ItemIdentifierType>.FlexibleCellProvider) {
         self.collectionView = collectionView
         self.cellProvider = cellProvider
         super.init()
@@ -46,6 +48,13 @@ open class ClassicDataSource<SectionIdentifierType, ItemIdentifierType>: NSObjec
         let _cell = cellProvider(collectionView, indexPath, item)
         guard let cell = _cell else { return UICollectionViewCell() }
         return cell
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let section = snapshot.section(at: indexPath) else { return UICollectionReusableView() }
+        let _view = viewProvider?(collectionView, kind, indexPath, section)
+        guard let view = _view else { return UICollectionReusableView() }
+        return view
     }
 
 }
