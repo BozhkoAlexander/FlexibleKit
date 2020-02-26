@@ -25,17 +25,10 @@ open class ClassicLayoutSupplementaryItem: ClassicLayoutItem {
         let lSyze = CGSize(
             width: layoutSize.widthDimension.value(for: bounds.size),
             height: layoutSize.heightDimension.value(for: bounds.size))
-        var lFrame = CGRect(origin: caret, size: lSyze)
-        switch verticalAlignment {
-        case .center: lFrame.origin.y = caret.y + round(0.5 * (bounds.height - lFrame.height))
-        case .bottom: lFrame.origin.y = caret.y + round(bounds.height - lFrame.height)
-        case .justify: lFrame.size.height = bounds.height
-        default: break
-        }
+        let lFrame = CGRect(origin: caret, size: lSyze)
          
         let attrs = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: elementKind, with: indexPath)
         attrs.frame = lFrame.inset(by: contentInsets)
-        attrs.frame.origin.x = 20
         attrs.zIndex = -1
         
         caret.x = lFrame.maxX
