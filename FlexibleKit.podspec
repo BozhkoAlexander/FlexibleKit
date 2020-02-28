@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FlexibleKit'
-  s.version          = '0.1.17'
+  s.version          = '0.1.18'
   s.summary          = 'FlexibleKit is a library for flexible page implementation in Filmgrail(c) apps.'
 
 # This description is used to generate tags and improve search results.
