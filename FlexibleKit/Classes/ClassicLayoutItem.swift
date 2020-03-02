@@ -61,7 +61,7 @@ public enum VerticalAlignment: String {
     
     case bottom = "bottom"
     
-    case justify = "jsutify"
+    case justify = "justify"
     
     public init(_ value: Any?) {
         guard let raw = value as? String, let alignment = VerticalAlignment(rawValue: raw) else {
