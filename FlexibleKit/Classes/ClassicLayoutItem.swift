@@ -15,7 +15,7 @@ open class ClassicLayoutItem: NSObject {
     
     open var contentInsets: UIEdgeInsets = .zero
     
-    open var verticalAlignment: VerticalAlignment = .top
+    open var verticalAlignment: Alignment = .top
     
     // MARK: - Life cycle
     
@@ -53,18 +53,22 @@ open class ClassicLayoutItem: NSObject {
 
 }
 
-public enum VerticalAlignment: String {
+public enum Alignment: String {
+    
+    case left = "left"
+    
+    case right = "right"
     
     case top = "top"
+        
+    case bottom = "bottom"
     
     case center = "center"
-    
-    case bottom = "bottom"
     
     case justify = "justify"
     
     public init(_ value: Any?) {
-        guard let raw = value as? String, let alignment = VerticalAlignment(rawValue: raw) else {
+        guard let raw = value as? String, let alignment = Alignment(rawValue: raw) else {
             self = .top
             return
         }
