@@ -65,6 +65,7 @@ open class ClassicLayoutGroup: ClassicLayoutItem {
         caret.x = frame.minX
         caret.y = frame.minY
         
+        var subitemsMap = [UICollectionViewLayoutAttributes]()
         subitems.enumerated().forEach({ index, item in
             switch direction {
             case .vertical: caret.x = frame.origin.x
@@ -72,11 +73,14 @@ open class ClassicLayoutGroup: ClassicLayoutItem {
             }
 
             let attrs = item.map(for: frame, caret: &caret, indexPath: &indexPath)
-            layoutMap.append(contentsOf: attrs)
+            subitemsMap.append(contentsOf: attrs)
         })
+        layoutMap.append(contentsOf: subitemsMap)
         
         if let rect = decorationFrame {
             caret.y = max(caret.y, rect.maxY)
+        } else if let maxY = subitemsMap.map({ $0.frame.maxY }).sorted(by: { $0 < $1 }).last {
+            caret.y = max(caret.y, maxY)
         }
         
         caret.x += contentInsets.right
